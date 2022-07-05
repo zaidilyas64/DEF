@@ -1,0 +1,16 @@
+﻿@model DEF.Model.Pages.Home
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Home"; /*Model.PageTitle*/
+}
+
+@if (Model != null && Model.Id > 0)
+{
+    if (Model.Components != null && Model.Components.Any())
+    {
+        foreach (var component in Model.Components)
+        {
+            @Html.Action(component.ContentType.Alias, component.ContentType.Alias, new { component = component })
+        }
+    }
+}
